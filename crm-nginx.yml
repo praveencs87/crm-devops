@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm-backbone-nginx-deployment
+  namespace: crm-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-route
+  template:
+    metadata:
+      labels:
+        app: nginx-route
+    spec:
+      containers:
+      - name: nginx-gateway
+        image: karthiksgd/crm-frontend:v1.0.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crm-backbone-nginx-service
+  namespace: crm-dev
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx-route
+  ports:
+  - port: 80
+    targetPort: 8080

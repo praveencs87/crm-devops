@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crm-db-config
+  namespace: crm-dev
+data:
+  POSTGRES_PASSWORD: postgres
