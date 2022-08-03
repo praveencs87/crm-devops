@@ -14,25 +14,34 @@ spec:
       labels:
         app: postgres-db
     spec:
+      volumes:
+      - name: crm-db-storage
+        persistentVolumeClaim:
+          claimName: crm-backbone-db-storage
       containers:
       - name: crm-backbone-db
-        image: karthiksgd/crm-db:v1.0.5
+        image: karthiksgd/crm-db:v1.0.6
+        # command:
+        # - /bin/chown
+        # - -R
+        # - "1000"
+        # - /var/lib/postgresql/data
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        env:
-            - name : POSTGRES_PASSWORD
-              value: postgres
         # env:
-        # - name: config-postgress
-        #   valueFrom: 
-        #     configMapKeyRef: 
-        #       name: crm-db-config 
-        #       key: POSTGRES_PASSWORD
-
+        #     - name : POSTGRES_PASSWORD
+        #       value: postgres
+        envFrom:
+        - configMapRef: 
+            name: crm-db-config
         ports:
         - containerPort: 5432
+        volumeMounts:
+        - name: crm-db-storage
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
 
 ---
 apiVersion: v1
