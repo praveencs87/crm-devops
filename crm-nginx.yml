@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx-gateway
-        image: karthiksgd/crm-frontend:v1.0.0
+        image: karthiksgd/crm-frontend:v1.0.13
         resources:
           limits:
             memory: "128Mi"

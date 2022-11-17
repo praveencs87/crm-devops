@@ -14,15 +14,16 @@ spec:
       labels:
         app: postgres-db
     spec:
-      volumes:
-      - name: crm-db-storage
-        persistentVolumeClaim:
-          claimName: crm-backbone-db-storage
+      # volumes:
+      # - name: crm-db-storage
+      #   persistentVolumeClaim:
+      #     claimName: crm-backbone-db-storage
       containers:
       - name: crm-backbone-db
-        image: karthiksgd/crm-db:v1.0.6
+        image: karthiksgd/crm-db:v1.0.7
         # command:
-        # - /bin/chown
+        # - /usr/bin/su - postgres
+        # - /bin/bash
         # - -R
         # - "1000"
         # - /var/lib/postgresql/data
@@ -38,10 +39,10 @@ spec:
             name: crm-db-config
         ports:
         - containerPort: 5432
-        volumeMounts:
-        - name: crm-db-storage
-          mountPath: /var/lib/postgresql/data
-          subPath: postgres
+        # volumeMounts:
+        # - name: crm-db-storage
+        #   mountPath: /var/lib/postgresql/data
+        #   subPath: postgres
 
 ---
 apiVersion: v1

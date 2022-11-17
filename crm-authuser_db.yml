@@ -1,38 +1,45 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crm-backbone-rest-deployment
+  name: crm-authuser-db-deployment
   namespace: crm-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: go-rest
+      app: postgres-authuser-db
   template:
     metadata:
       labels:
-        app: go-rest
+        app: postgres-authuser-db
     spec:
       containers:
-      - name: crm-backbone-rest
-        image: karthiksgd/crm-rest:v1.0.29
+      - name: crm-authuser-db
+        image: karthiksgd/crm-auth-user-db:v1.0.2
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        envFrom:
+        - configMapRef: 
+            name: crm-db-config
         ports:
-        - containerPort: 8085
+        - containerPort: 5432
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: crm-backbone-rest-service
+  name: crm-authuser-db-service
   namespace: crm-dev
 spec:
   type: ClusterIP
   selector:
-    app: go-rest
+    app: postgres-authuser-db
   ports:
-  - port: 8085
-    targetPort: 8085
+  - port: 5432
+    targetPort: 5432
+
+
+
