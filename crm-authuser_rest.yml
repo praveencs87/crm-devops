@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: crm-authuser-rest
-        image: karthiksgd/crm-auth-user-rest:v1.0.5
+        image: karthiksgd/crm-auth-user-rest:v1.0.6
         resources:
           limits:
             memory: "128Mi"
