@@ -46,6 +46,13 @@ spec:
             name: crm-authuser-rest-service
             port:
               number: 8086
+      - path: /client/lead/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: crm-lead-api-service
+            port:
+              number: 3001
   - host: www.akstech.sg
     http:
       paths:
@@ -70,3 +77,10 @@ spec:
             name: crm-authuser-rest-service
             port:
               number: 8086
+      - path: /client/lead/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: crm-lead-api-service
+            port:
+              number: 3001

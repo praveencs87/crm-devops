@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
       - name: crm-lead-api-rest
-        image: karthiksgd/crm-lead-node:v1.0.0
+        image: karthiksgd/crm-lead-node:v1.0.6
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "250m"
         ports:
-        - containerPort:3001
+        - containerPort: 3001
 
 ---
 apiVersion: v1
