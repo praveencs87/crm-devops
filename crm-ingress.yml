@@ -32,6 +32,13 @@ spec:
             name: crm-backbone-nginx-service
             port:
               number: 8080
+      - path: /client/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: crm-client-frontend-service
+            port:
+              number: 8090
       - path: /admin/api/?(.*)
         pathType: Prefix
         backend:
@@ -63,6 +70,13 @@ spec:
             name: crm-backbone-nginx-service
             port:
               number: 8080
+      - path: /client/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: crm-client-frontend-service
+            port:
+              number: 8090
       - path: /admin/api/?(.*)
         pathType: Prefix
         backend:
