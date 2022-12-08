@@ -4,6 +4,6 @@ metadata:
   name: crm-lead-config
   namespace: crm-dev
 data:
-  POSTGRES_PASSWORD: root
-  POSTGRES_USER: praveen
-  POSTGRES_DB: aks_lead
+  POSTGRES_PASSWORD: postgres
+  # POSTGRES_USER: praveen
+  # POSTGRES_DB: aks_lead

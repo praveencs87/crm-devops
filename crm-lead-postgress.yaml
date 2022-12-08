@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: crm-lead-db
-        image: karthiksgd/crm-lead-postgress:v1.0.0
+        image: karthiksgd/crm-lead-postgress:v1.0.5
         resources:
           limits:
             memory: "128Mi"
